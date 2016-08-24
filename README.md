@@ -34,6 +34,43 @@ objects.map(get('prop')); // => [ 1, 'uno', '1' ]
 ```
 
 
+## [Lodash:](https://lodash.com/)
+
+#### 1. Instalación
+
+```sh
+npm install --save ramda
+```
+
+```javascript
+const _ = require('lodash');
+```
+
+#### 2. Ejemplos
+Currying básico de una función:
+```javascript
+const curriedSum = _.curry((a, b, c) => -a + b + c);
+console.log(curriedSum(2, 2)(4)); // => 4
+console.log(curriedSum(_, 2, 2)(4)); // => 0
+```
+
+
+## [Lazy.js:](http://danieltao.com/lazy.js/)
+
+#### 1. Instalación
+
+```sh
+npm install --save lazy.js
+```
+
+```javascript
+const _ = require('lazy.js');
+```
+
+#### 2. Ejemplos
+
+
+
 ## Referencias:
 * http://ramdajs.com/0.22.1/docs/
 * http://fr.umio.us/why-ramda/
