@@ -75,6 +75,9 @@ console.log(curriedSum(2, 2)(4)); // => 4
 console.log(curriedSum(_, 2, 2)(4)); // => 0
 ```
 
+### [Lodash FP:](https://github.com/lodash/lodash/wiki/FP-Guide)
+El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones están currificadas, y en los argumentos, los iteradores están al principio y los datos al final.
+
 
 A diferencia de ramda, lo-dash no recibe el callback como primer argumento, lo cual provoca que el código sea menos elegante:
 ```javascript
