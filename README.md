@@ -95,3 +95,47 @@ const _ = require('lazy.js');
 ## Referencias:
 * http://ramdajs.com/0.22.1/docs/
 * http://fr.umio.us/why-ramda/
+
+
+
+
+
+```javascript
+// Ramda
+
+const where1 = R.where({
+  type: R.equals('fire'),
+  name: R.complement(R.equals('Charmander')),
+  cp: R.gt(R.__, 50),
+  hp: R.lt(R.__, 100),
+});
+
+const filter1 = R.filter(where1);
+console.log(filter1(arr));
+
+
+// Lodash normal
+
+const where2 = _.conforms({
+  type: _.curry(_.isEqual)('fire'),
+  name: _.negate(_.curry(_.isEqual)('Charmander')),
+  cp: _.curry(_.gt)(_, 50),
+  hp: _.curry(_.lt)(_, 100),
+});
+
+const filter2 = _.curry(_.filter)(_, where2);
+console.log(filter2(arr));
+
+
+// Lodash FP
+
+const where3 = fp.conforms({
+  type: fp.isEqual('fire'),
+  name: fp.negate(fp.isEqual('Charmander')),
+  cp: fp.gt(fp.__, 50),
+  hp: fp.lt(fp.__, 100),
+});
+
+const filter3 = fp.filter(where3);
+console.log(filter3(arr));
+```
