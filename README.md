@@ -94,7 +94,6 @@ console.log(filter(arr));
 
 
 ### [Lodash FP:](https://github.com/lodash/lodash/wiki/FP-Guide)
-<<<<<<< HEAD
 El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones están currificadas, y en los argumentos, los iteradores están al principio y los datos al final, volviendo a hacer el ejemplo del filtro para objetos queda:
 
 ```javascript
