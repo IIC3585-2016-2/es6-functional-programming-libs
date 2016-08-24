@@ -36,6 +36,26 @@ objects.map(get('prop')); // => [ 1, 'uno', '1' ]
 ```
 
 
+Una ventaja de Ramda es que sus funciones además de estar currificadas, siempre reciben como argumento primero el callback, lo que permite hacer algo como esto:
+
+```javascript
+const where = R.where({
+  a: R.equals('foo'),
+  b: R.complement(R.equals('bar')),
+  x: R.gt(R.__, 10),
+  y: R.lt(R.__, 20)
+});
+
+const arr = [ {a:  'foo', b: 'bars', x: 11, y:19},
+            {a:  'foo', b: 'bar', x: 11, y:19},
+            {a:  'foo', b: 'notabar', x: 15, y:0}];            
+const filter = R.filter(where)
+filter(arr) // => [ { a: 'foo', b: 'bars', x: 11, y: 19 },
+            //     { a: 'foo', b: 'baras', x: 15, y: 0 } ]
+```
+
+
+
 ## Referencias:
 * http://ramdajs.com/0.22.1/docs/
 * http://fr.umio.us/why-ramda/
