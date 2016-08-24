@@ -1,7 +1,7 @@
 # Librerías para programación funcional en javascript
 ---
 Se van a revisar algunas de las principales librerías de programación funcional
-para javascript, para cada libreria se mostrarán los mismo ejemplos, con el fin de resaltar las diferencias y similitudes en la sintaxis y alcance de las librerias.
+para javascript, para cada libreria se mostrarán los mismso ejemplos, con el fin de resaltar las diferencias y similitudes en la sintaxis y alcance de las librerias.
 
 
 ## [Ramda.js: ](http://ramdajs.com/)
