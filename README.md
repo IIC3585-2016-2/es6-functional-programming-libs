@@ -40,15 +40,17 @@ Una ventaja de Ramda es que sus funciones además de estar currificadas, siempre
 
 ```javascript
 const where = R.where({
-  a: R.equals('foo'),
-  b: R.complement(R.equals('bar')),
-  x: R.gt(R.__, 10),
-  y: R.lt(R.__, 20)
+  type: R.equals('fire'),
+  name: R.complement(R.equals('Charmander')),
+  cp: R.gt(R.__, 50),
+  hp: R.lt(R.__, 100)
 });
 
-const arr = [ {a:  'foo', b: 'bars', x: 11, y:19},
-            {a:  'foo', b: 'bar', x: 11, y:19},
-            {a:  'foo', b: 'notabar', x: 15, y:0}];            
+const arr = [ {type:  'fire',   name: 'Magmar',     cp: 754,  hp :119},
+              {type:  'water',  name: 'Squirtle',   cp: 11,   hp: 19},
+              {type:  'fire',   name: 'Charmander', cp: 95,   hp: 99},
+              {type:  'fire',   name: 'Magmar',     cp: 955,  hp :90}];      
+
 const filter = R.filter(where)
 filter(arr) // => [ { type: 'fire', name: 'Magmar', cp: 955, hp: 90 } ]
 ```
@@ -75,9 +77,6 @@ console.log(curriedSum(2, 2)(4)); // => 4
 console.log(curriedSum(_, 2, 2)(4)); // => 0
 ```
 
-### [Lodash FP:](https://github.com/lodash/lodash/wiki/FP-Guide)
-El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones están currificadas, y en los argumentos, los iteradores están al principio y los datos al final.
-
 
 A diferencia de ramda, lo-dash no recibe el callback como primer argumento, lo cual provoca que el código sea menos elegante:
 ```javascript
@@ -91,6 +90,24 @@ const where = _.conforms({
 const filter = _.curry(_.filter)(_, where);
 console.log(filter(arr));
 ```
+
+
+
+### [Lodash FP:](https://github.com/lodash/lodash/wiki/FP-Guide)
+El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones están currificadas, y en los argumentos, los iteradores están al principio y los datos al final, volviendo a hacer el ejemplo del filtro para objetos queda:
+
+```javascript
+const where = fp.conforms({
+  type: fp.isEqual('fire'),
+  name: fp.negate(fp.isEqual('Charmander')),
+  cp: fp.gt(fp.__, 50),
+  hp: fp.lt(fp.__, 100),
+});
+
+const filter = fp.filter(where);
+console.log(filter(arr));
+```
+
 
 
 ## [Lazy.js:](http://danieltao.com/lazy.js/)
@@ -109,30 +126,16 @@ const _ = require('lazy.js');
 
 
 
+
+## Performance
+Para medir cual de las librerías es más eficiente, utilizamos el ejemplo de filtro, para filtrar un arreglo de 10.000.0000 de pokemones. Los resultados fueron los siguientes:
+
+
+
+
 ## Referencias:
 * http://ramdajs.com/0.22.1/docs/
 * http://fr.umio.us/why-ramda/
-
-
-
-
-
-```javascript
-
-
-// Lodash normal
-
-
-
-// Lodash FP
-
-const where3 = fp.conforms({
-  type: fp.isEqual('fire'),
-  name: fp.negate(fp.isEqual('Charmander')),
-  cp: fp.gt(fp.__, 50),
-  hp: fp.lt(fp.__, 100),
-});
-
-const filter3 = fp.filter(where3);
-console.log(filter3(arr));
-```
+* https://github.com/lodash/lodash/wiki/FP-Guide
+* https://lodash.com/
+* http://danieltao.com/lazy.js/
