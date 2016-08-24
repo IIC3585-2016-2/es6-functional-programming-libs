@@ -16,7 +16,7 @@ npm install --save ramda
 ```
 
 ```javascript
-const R = require 'ramda'
+const R = require('ramda')
 ```
 
 #### 2. Ejemplos
@@ -142,6 +142,8 @@ const threeParagraphs = Lazy(book).split('\n').take(3);
 ```
 
 Esta técnica es aplicable a arreglos, strings y streams.
+
+-----------------------------------------------
 
 Otra aplicación es generar secuencias. Por ejemplo, para obtener 300 números aleatoreos entre 1 y 1000, pero únicos entre ellos:
 
