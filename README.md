@@ -55,10 +55,16 @@ console.log(curriedSum(_, 2, 2)(4)); // => 0
 ```
 
 ### [Lodash FP:](https://github.com/lodash/lodash/wiki/FP-Guide)
-El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones están currificadas, y en los argumentos, los iteradores están al principio y los datos al final.
+El módulo `lodash/fp` es una instancia de Lodash más amigable con la programación funcional, con características similares a Ramda. Sus funciones vienen ya currificadas, y en los argumentos, los iteradores están al principio y los datos al final.
+
+```javascript
+const fp = require('lodash/fp');
+```
 
 
 ## [Lazy.js:](http://danieltao.com/lazy.js/)
+
+Es una librería para escribir código que se evalua cuando es necesario (lazy), de manera funcional.
 
 #### 1. Instalación
 
@@ -72,6 +78,28 @@ const _ = require('lazy.js');
 
 #### 2. Ejemplos
 
+Si tenemos un libro completo en un string, y queremos obtener sus tres primeros párrafos, se puede hacer directamente así:
+```javascript
+const threeParagraphs = book.split('\n').slice(0,3);
+```
+Aunque es fácil de escribir, el rendimiento es malo porque se recorre el libro completo buscando cambios de línea. Se podría hacer un `for` que recorra caracter por caracter y vaya tomando substrings, pero eso es programación imperativa.
+
+En cambio, usando Lazy.js, se puede hacer:
+```javascript
+const threeParagraphs = Lazy(book).split('\n').take(3);
+```
+
+Esta técnica es aplicable a arreglos, strings y streams.
+
+Otra aplicación es generar secuencias. Por ejemplo, para obtener 300 números aleatoreos entre 1 y 1000, pero únicos entre ellos:
+
+```javascript
+const uniqueRandoms = Lazy.generate(Math.random)
+  .map((r) => Math.floor(r * 1000) + 1)
+  .uniq()
+  .take(300);
+```
+La gracia es que al obtenerlos con `uniqueRandoms.each(...)` se van generando cuando se necesitan, sin tener que calcularlos todos al principio.
 
 
 ## Referencias:
