@@ -11,8 +11,8 @@ Las funciones provistas por Ramda están todas currificadas por defecto y se sep
 
 #### 1. Instalación
 
-```sh
-npm install --save ramda
+```javascript
+npm install ramda
 ```
 
 ```javascript
@@ -40,55 +40,21 @@ Una ventaja de Ramda es que sus funciones además de estar currificadas, siempre
 
 ```javascript
 const where = R.where({
-  a: R.equals('foo'),
-  b: R.complement(R.equals('bar')),
-  x: R.gt(R.__, 10),
-  y: R.lt(R.__, 20)
+  type: R.equals('fire'),
+  name: R.complement(R.equals('Charmander')),
+  cp: R.gt(R.__, 50),
+  hp: R.lt(R.__, 100)
 });
 
-const arr = [ {a:  'foo', b: 'bars', x: 11, y:19},
-            {a:  'foo', b: 'bar', x: 11, y:19},
-            {a:  'foo', b: 'notabar', x: 15, y:0}];            
+const arr = [ {type:  'fire', name: 'Magmar', cp: 754, hp :119},
+              {type:  'water', name: 'Squirtle', cp: 11, hp: 19},
+              {type:  'fire', name: 'Charmander', cp: 95, hp: 99},
+              {type:  'fire', name: 'Magmar', cp: 955, hp :90}];            
 const filter = R.filter(where)
-filter(arr) // => [ { type: 'fire', name: 'Magmar', cp: 955, hp: 90 } ]
+filter(arr) // => [ { a: 'foo', b: 'bars', x: 11, y: 19 },
+            //      { a: 'foo', b: 'baras', x: 15, y: 0 } ]
 ```
 
-
-
-## [Lodash:](https://lodash.com/)
-
-#### 1. Instalación
-
-```sh
-npm install --save lodash
-```
-
-```javascript
-const _ = require('lodash');
-```
-
-#### 2. Ejemplos
-Currying básico de una función:
-```javascript
-const curriedSum = _.curry((a, b, c) => -a + b + c);
-console.log(curriedSum(2, 2)(4)); // => 4
-console.log(curriedSum(_, 2, 2)(4)); // => 0
-```
-
-
-## [Lazy.js:](http://danieltao.com/lazy.js/)
-
-#### 1. Instalación
-
-```sh
-npm install --save lazy.js
-```
-
-```javascript
-const _ = require('lazy.js');
-```
-
-#### 2. Ejemplos
 
 
 
